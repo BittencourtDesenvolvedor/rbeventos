@@ -27,6 +27,9 @@
                 @if(session('msg'))
                    <p class="msg">{{session('msg')}}</p>
                 @endif
+                @if(session('error'))
+                <p class="error">{{session('error')}}</p>
+             @endif
             </div>
         </div>
         @yield('body')

@@ -18,6 +18,7 @@ Route::get('/', [EventController::class, 'index'])->name('event.home');
 
 Route::prefix('/events')->group(function(){
     Route::get('/create', [EventController::class, 'create'])->name('event.create');
+    Route::get('/{id}', [EventController::class, 'show'])->name('event.show');
     Route::post('/store', [EventController::class, 'store'])->name('event.store');
 });
 

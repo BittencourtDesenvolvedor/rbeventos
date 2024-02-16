@@ -31,29 +31,40 @@ class EventController extends Controller
     {
         $event = new Event;
         $event->title = $request->title;
+        $event->date = $request->date;
         $event->city = $request->city;
         $event->private = $request->private;
         $event->description = $request->description;
+        $event->items = $request->items;
 
-        if($request->hasFile('image') ** $request->file('image')->isValid()){
-            $requestImage = $request->image;
-            $extension = $requestImage->extension();
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
-            $requestImage->move(public_path('img/events'), $imageName);
-            $event->image = $imageName;
+        if($event->title != "" && $event->city != ""){
+            if($request->hasFile('image') != "" && $request->file('image')->isValid()){
+                $requestImage = $request->image;
+                $extension = $requestImage->extension();
+                $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
+                $requestImage->move(public_path('img/events'), $imageName);
+                $event->image = $imageName;
 
+                $event->save();
+                return redirect('/events/create')->with('msg', 'Evento criado com sucesso!');
+            }else{
+                return redirect('/events/create')->with('error', 'Selecione uma imagem para o seu evento');
+            }           
+             
+        }else{
+            return redirect('/events/create')->with('error', 'Os campos com * são obrigatórios!');
         }
 
-        $event->save();
-        return redirect('/events/create')->with('msg', 'Evento criado com sucesso!');
+       
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        return view('events/show', ['event' => $event]);
     }
 
     /**

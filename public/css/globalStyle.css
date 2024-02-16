@@ -21,6 +21,14 @@ header{
     text-align: center;
     padding: 10px;
 }
+.error{
+    background-color: darkred;
+    color: #fff;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
 
 /* Navbar */
 #navbar{
@@ -108,7 +116,53 @@ header{
     font-size: 12px;
 }
 
-
+/*Event page */
+#image-container, #info-container{
+    margin-top: 30px;
+    width: 50%;    
+}
+#image-container{  
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+#image-container img{
+    border-radius: 10px;
+    width: 500px;
+    position: absolute;
+}
+#info-container h1{
+    font-size: 36px;
+    font-weight: 900;
+}
+#info-container p{
+   margin: 5px 0;
+   font-size: 14px;
+   display: flex;
+}
+#info-container h3, #description-container h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+#info-container ion-icon{
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    color: darkblue;
+}
+#info-container #event-submit{ 
+    margin: 20px 0;
+}
+.subtitleImg{
+    font-size: .7rem;
+}
+#items-list {
+    list-style: none;
+    padding-left: 0;
+}
+#otems-list li {
+    display: flex;
+}
 
 /* Footer */
 footer{
